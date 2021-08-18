@@ -1,61 +1,69 @@
-// Assignment Code
-var generateBtn = document.querySelector("#generate");
+let generateBtn = document.querySelector("#generate");
+console.log(generateBtn);
 
+const lowerChar = "abcdefghijklmnopqrstuvwxyz";
+//Array reference
+const upperChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-//VARIABLES BELOW:
-var lowerChar = "abcdefghijklmnopqrstuvwxyz";
-var upperChar = "ABCDEFGHIJKLMNOPQRSTUVWRXYZ";
-var num = "0123456789";
-var specialChar =  "~!@#$%^&*()_+=";
-var masterString = ""
-//master string += 
-var password = ""
-var length
+const specialChar = "#$%&()*+<=>?@";
 
-// Write password to the #password input
-function writePassword() {
-  //Prompts for char types
-  
-  
-  
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-  
-  passwordText.value = password;
-  
-}
+const num = "0123456789";
 
-//function that generates password from characters on masterString
+let allChar = "";
+
+// Prompt questions and answer section
 function generatePassword() {
-  //Grab a random char from the master string one at a time until the length is met
-  for (let i = 0; i < length; i++) {
-    var random = Math.floor(Math.random()* masterString.length)
-   password += masterString.charAt(random) 
+  let pwdLength = prompt(
+    "Between 8 and 128 characters, how long would you like your password to be?"
+  );
+  console.log(pwdLength);
+  if (pwdLength < 8 || pwdLength > 128 || isNaN(parseInt(pwdLength))) {
+    alert("Please enter a number between 8 and 128.");
+  } else {
+    let lowerCase = confirm("Would you like to use lowerCase characters?");
+    console.log(lowerCase);
+    if (lowerCase == true) {
+      allChar += lowerChar;
+    }
+    let upperCase = confirm("Would you like to use upperCase characters?");
+    console.log(upperCase);
+    if (upperCase == true) {
+      allChar += upperChar;
+    }
+    let special = confirm("Would you like to use specialCharacters?");
+    console.log(special);
+    if (special == true) {
+      allChar += specialChar;
+    }
+    let numbers = confirm("Would you like to use numbers?");
+    console.log(numbers);
+    if (numbers == true) {
+      allChar += num;
+    }
+    //console.log("promt worked")
+    if (
+      lowerCase === false &&
+      upperCase === false &&
+      special === false &&
+      numbers === false
+    ) {
+      alert("Please select at least one character type.");
+      generatePassword();
+    }
   }
-  
-  document.querySelector("#password").textContent= password
+  let pwd = "";
+  for (let i = 0; i < pwdLength; i++) {
+    pwd += allChar.charAt(Math.floor(Math.random() * allChar.length));
+  }
+  return pwd;
 }
 
-function defineLength() {
-  var passLength = prompt("Please select the length of your password (min: 8 characters and max: 128 characters).");
-  length = passLength
-  
-}
-
-function defineChar() {
-
+function writePassword() {
+  let password = generatePassword();
+  let passwordText = document.querySelector("#password");
+  passwordText.value = password;
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-
-//Prompt 1: has user select length min 8 char max 128 char
-var passLength = prompt("Please select the length of your password (min: 8 characters and max: 128 characters).");
-// if passLength < 8 prompt("Password must be longer than 8 character") 
-// if else passLenth is > 128 prompt ("Password must be shorter than 128 characters")
-// else pass length < 8 && >128 go to the next function
-
-//Prompt 2: User chooses to which type of characters) 
-var passChar
-
+console.log(generateBtn);
