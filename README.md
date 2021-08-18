@@ -10,6 +10,8 @@ The application runs on HTML, CSS and Javascript. Only requires a broswer and in
 
 #### Usage
 
+deployed Link: https://adrianauch.github.io/password-generator-hw/
+
 The homescreen that the user is presented with.
 ![Box with words password generator and textbox](Assets/Images/Homescreen.png)
 
