@@ -1,5 +1,4 @@
 let generateBtn = document.querySelector("#generate");
-console.log(generateBtn);
 
 const lowerChar = "abcdefghijklmnopqrstuvwxyz";
 //Array reference
